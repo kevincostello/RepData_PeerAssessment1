@@ -1,6 +1,6 @@
 # Reproducible Research: Peer Assessment 1
 Kevin Costello  
-`r format(Sys.Date(), '%d/%m/%y')`  
+06/04/2017  
 
 
 ```r
