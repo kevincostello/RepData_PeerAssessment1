@@ -319,4 +319,4 @@ medianIntervalImpute <- summarise(byIntervalGroup, medianDay = median(steps, na.
 xyplot(meanDay ~ interval | weekend, data = meanIntervalImpute, layout = c(1, 2), xlab = "Interval", ylab = "Number of Steps", main = "Mean number of steps per day by interval split by weekend and weekday")
 ```
 
-![](PA1_template_files/figure-html/Create panel plot of the mean number of steps per day by interval split by weekend and weekday-1.png?raw=true)<!-- -->
+![](PA1_template_files/figure-html/Create panel plot of the mean number of steps per day by interval split by weekend and weekday-1.png)<!-- -->

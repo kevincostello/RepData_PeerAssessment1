@@ -7,7 +7,7 @@ output:
     keep_md: yes
 ---
 
-```{r setup, include=TRUE}
+```{r setup, include=TRUE, cache=FALSE}
 knitr::opts_chunk$set(message = FALSE, echo = TRUE, results = "asis", fig.show = "asis", include = TRUE)
 ```
 
