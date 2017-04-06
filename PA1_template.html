@@ -124,7 +124,7 @@ $(document).ready(function () {
 </div>
 
 
-<pre class="r"><code>knitr::opts_chunk$set(message = FALSE, echo = TRUE, results = &quot;markup&quot;, fig.show = &quot;asis&quot;, include = TRUE)</code></pre>
+<pre class="r"><code>knitr::opts_chunk$set(message = FALSE, echo = TRUE, results = &quot;asis&quot;, fig.show = &quot;asis&quot;, include = TRUE)</code></pre>
 <div id="loading-and-preprocessing-the-data" class="section level1">
 <h1>Loading and preprocessing the data</h1>
 <ul>
@@ -176,13 +176,13 @@ library(tidyr)</code></pre>
 </ul>
 <pre class="r"><code>meanDayTotalAllDays &lt;- mean(sumDay$sumDay, na.rm = TRUE)
 print(meanDayTotalAllDays)</code></pre>
-<pre><code>## [1] 9354.23</code></pre>
+<p>[1] 9354.23</p>
 <ul>
 <li>Calculate report the median number of steps per day without imputation</li>
 </ul>
 <pre class="r"><code>medianDayTotalAllDays &lt;- median(sumDay$sumDay, na.rm = TRUE)
 print(medianDayTotalAllDays)</code></pre>
-<pre><code>## [1] 10395</code></pre>
+<p>[1] 10395</p>
 </div>
 <div id="what-is-the-average-daily-activity-pattern" class="section level1">
 <h1>What is the average daily activity pattern?</h1>
@@ -207,10 +207,10 @@ print(medianDayTotalAllDays)</code></pre>
 </ol>
 <pre class="r"><code>interval &lt;- subset(meanInterval, meanInterval == max(meanInterval))
 print(interval)</code></pre>
-<pre><code>## # A tibble: 1 × 2
-##   interval meanInterval
-##      &lt;int&gt;        &lt;dbl&gt;
-## 1      835     206.1698</code></pre>
+</div>
+<div id="a-tibble-1-2" class="section level1">
+<h1>A tibble: 1 × 2</h1>
+<p>interval meanInterval <int> <dbl> 1 835 206.1698</p>
 </div>
 <div id="imputing-missing-values" class="section level1">
 <h1>Imputing missing values</h1>
@@ -219,8 +219,7 @@ print(interval)</code></pre>
 </ol>
 <pre class="r"><code>numr &lt;- summarise(activity, countNA = sum(is.na(steps)))
 print(numr)</code></pre>
-<pre><code>##   countNA
-## 1    2304</code></pre>
+<p>countNA 1 2304</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.</li>
 </ol>
@@ -248,29 +247,29 @@ byDay4 &lt;- byDay2$steps == byDay3$steps
 # Count number of rows in original dataset
 byDay2Nrows &lt;- nrow(byDay2)
 print(byDay2Nrows)</code></pre>
-<pre><code>## [1] 17568</code></pre>
+<p>[1] 17568</p>
 <pre class="r"><code># Count number of rows in imputted dataset
 byDay3Nrows &lt;- nrow(byDay3)
 print(byDay3Nrows)</code></pre>
-<pre><code>## [1] 17568</code></pre>
+<p>[1] 17568</p>
 <pre class="r"><code># Check the number of rows in the original and imputted datasets are the same
 byDay2Nrows == byDay3Nrows</code></pre>
-<pre><code>## [1] TRUE</code></pre>
+<p>[1] TRUE</p>
 <pre class="r"><code># Count number of times the values from the original and imputted datasets are equal
 equalSteps &lt;- sum(byDay4, na.rm = TRUE)
 print(equalSteps)</code></pre>
-<pre><code>## [1] 15264</code></pre>
+<p>[1] 15264</p>
 <pre class="r"><code># Count number of NA values for steps in original dataset
 byDay2NA &lt;- sum(is.na(byDay2$steps))
 print(byDay2NA)</code></pre>
-<pre><code>## [1] 2304</code></pre>
+<p>[1] 2304</p>
 <pre class="r"><code># Count number of NA values for steps in imputted dataset
 byDay3NA &lt;- sum(is.na(byDay3$steps))
 print(byDay3NA)</code></pre>
-<pre><code>## [1] 0</code></pre>
+<p>[1] 0</p>
 <pre class="r"><code># Sum of the equal values in the original and imputted datasets and the NA values in original dataset should equal the total number of rows in the original dataset
 equalSteps + byDay2NA == byDay2Nrows</code></pre>
-<pre><code>## [1] TRUE</code></pre>
+<p>[1] TRUE</p>
 <ol start="4" style="list-style-type: decimal">
 <li>Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?</li>
 </ol>
@@ -293,13 +292,13 @@ equalSteps + byDay2NA == byDay2Nrows</code></pre>
 </ul>
 <pre class="r"><code>meanDayTotalSumImpute &lt;- mean(sumDay3$sumDay, na.rm = TRUE)
 print(meanDayTotalSumImpute)</code></pre>
-<pre><code>## [1] 10766.19</code></pre>
+<p>[1] 10766.19</p>
 <ul>
 <li>Calculate and report the median number of steps per day with imputation</li>
 </ul>
 <pre class="r"><code>medianDayTotalSumImpute &lt;- median(sumDay3$sumDay, na.rm = TRUE)
 print(medianDayTotalSumImpute)</code></pre>
-<pre><code>## [1] 10766.19</code></pre>
+<p>[1] 10766.19</p>
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level1">
 <h1>Are there differences in activity patterns between weekdays and weekends?</h1>

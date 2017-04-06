@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r setup, include=TRUE}
-knitr::opts_chunk$set(message = FALSE, echo = TRUE, results = "markup", fig.show = "asis", include = TRUE)
+knitr::opts_chunk$set(message = FALSE, echo = TRUE, results = "asis", fig.show = "asis", include = TRUE)
 ```
 
 # Loading and preprocessing the data
