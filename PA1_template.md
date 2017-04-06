@@ -59,7 +59,7 @@ sumDay <- summarise(byDay, sumDay = sum(steps, na.rm = TRUE))
 qplot(sumDay$sumDay, geom = "histogram", xlab = "Mean total number of steps taken per day", ylab = "Count", binwidth = 1000, main = "Histogram of total number of steps per day (without imputation)")
 ```
 
-![](PA1_template_files/figure-html/Plot histogram of total number of steps per day without imputation-1.png)<!-- -->
+![](PA1_template_files/figure-html/Plothistogramoftotalnumberofstepsperdaywithoutimputation-1.png)<!-- -->
 
 3. Calculate and report the mean and median of the total number of steps taken per day
 
@@ -108,7 +108,7 @@ meanInterval <- summarise(byInterval, meanInterval = mean(steps, na.rm = TRUE))
 plot(meanInterval$interval, meanInterval$meanInterval, type = "l", xlab = "Interval", ylab = "Mean number of steps per interval", main = "Time series plot of the Mean number of steps per interval versus interval (without imputation)")
 ```
 
-![](PA1_template_files/figure-html/Plot time series of Mean number of steps per interval versus interval-1.png)<!-- -->
+![](PA1_template_files/figure-html/PlottimeseriesofMeannumberofstepsperintervalversusinterval-1.png)<!-- -->
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -242,7 +242,7 @@ sumDay3 <- byDayGroup %>%
 qplot(sumDay3$sumDay, geom = "histogram", xlab = "Mean total number of steps taken per day", ylab = "Count", binwidth = 1000, main = c("Histogram of total number of steps per day (Imputted)"))
 ```
 
-![](PA1_template_files/figure-html/Plot histogram of total number of steps per day with imputation-1.png)<!-- -->
+![](PA1_template_files/figure-html/Plothistogramoftotalnumberofstepsperdaywithimputation-1.png)<!-- -->
 
 * Calculate and report the mean number of steps per day with imputation
 
@@ -319,4 +319,4 @@ medianIntervalImpute <- summarise(byIntervalGroup, medianDay = median(steps, na.
 xyplot(meanDay ~ interval | weekend, data = meanIntervalImpute, layout = c(1, 2), xlab = "Interval", ylab = "Number of Steps", main = "Mean number of steps per day by interval split by weekend and weekday")
 ```
 
-![](PA1_template_files/figure-html/Create panel plot of the mean number of steps per day by interval split by weekend and weekday-1.png)<!-- -->
+![](PA1_template_files/figure-html/Createpanelplotofthemeannumberofstepsperdaybyintervalsplitbyweekendandweekday-1.png)<!-- -->

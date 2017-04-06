@@ -15,7 +15,7 @@ knitr::opts_chunk$set(message = FALSE, echo = TRUE, results = "asis", fig.show =
 
 * Load libraries required for the assignment
 
-```{r Load libraries required for assignment}
+```{r Loadlibrariesrequiredforassignment}
 library(dplyr)
 library(reshape2)
 library(ggplot2)
@@ -28,7 +28,7 @@ library(tidyr)
 
 * Load activity.csv
 
-```{r Read in activity.csv file}
+```{r Readinactivity.csvfile}
 activity <- read.csv("activity.csv", na.strings = "NA")
 ```
 
@@ -42,19 +42,19 @@ activity <- read.csv("activity.csv", na.strings = "NA")
 
 * Create groups to calculate statistics.  The statistics will be grouped by date
 
-```{r Create groups by date to calculate statistics}
+```{r Creategroupsbydatetocalculatestatistics}
 byDay <- group_by(activity, date)
 ```
 
 * Calculate total number of steps taken per day
 
-```{r Calculate total number of steps per day without imputation}
+```{r Calculatetotalnumberofstepsperdaywithoutimputation}
 sumDay <- summarise(byDay, sumDay = sum(steps, na.rm = TRUE))
 ```
 
 2. Make a histogram of the total number of steps taken each day
 
-```{r Plot histogram of total number of steps per day without imputation, fig.width = 7, fig.height = 6}
+```{r Plothistogramoftotalnumberofstepsperdaywithoutimputation, fig.width = 7, fig.height = 6}
 qplot(sumDay$sumDay, geom = "histogram", xlab = "Mean total number of steps taken per day", ylab = "Count", binwidth = 1000, main = "Histogram of total number of steps per day (without imputation)")
 ```
 
@@ -62,14 +62,14 @@ qplot(sumDay$sumDay, geom = "histogram", xlab = "Mean total number of steps take
 
 * Calculate and report the mean number of steps per day without imputation
 
-```{r Calculate mean total number of steps taken per day without imputation}
+```{r Calculatemeantotalnumberofstepstakenperdaywithoutimputation}
 meanDayTotalAllDays <- mean(sumDay$sumDay, na.rm = TRUE)
 print(meanDayTotalAllDays)
 ```
 
 * Calculate report the median number of steps per day without imputation
 
-```{r Calculate median number of steps per day without imputation}
+```{r Calculatemediannumberofstepsperdaywithoutimputation}
 medianDayTotalAllDays <- median(sumDay$sumDay, na.rm = TRUE)
 print(medianDayTotalAllDays)
 ```
@@ -80,25 +80,25 @@ print(medianDayTotalAllDays)
 
 * Create groups to calculate statistics.  The statistics will be grouped by interval
 
-```{r Create groups by activity and interval}
+```{r Creategroupsbyactivityandinterval}
 byInterval <- group_by(activity, interval)
 ```
 
 * Calculate mean number of steps per interval
 
-```{r Calculate mean number of steps per interval}
+```{r Calculatemeannumberofstepsperinterval}
 meanInterval <- summarise(byInterval, meanInterval = mean(steps, na.rm = TRUE))
 ```
 
 * Make the time series plot
 
-```{r Plot time series of Mean number of steps per interval versus interval, fig.width = 10, fig.height = 6}
+```{r PlottimeseriesofMeannumberofstepsperintervalversusinterval, fig.width = 10, fig.height = 6}
 plot(meanInterval$interval, meanInterval$meanInterval, type = "l", xlab = "Interval", ylab = "Mean number of steps per interval", main = "Time series plot of the Mean number of steps per interval versus interval (without imputation)")
 ```
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
-```{r Determine interval containing maximum number of steps across all days}
+```{r Determineintervalcontainingmaximumnumberofstepsacrossalldays}
 interval <- subset(meanInterval, meanInterval == max(meanInterval))
 print(interval)
 ```
@@ -107,7 +107,7 @@ print(interval)
 
 1. Calculate and report the total number of missing values in the dataset
 
-```{r Calculate and report the total number of missing values in the dataset}
+```{r Calculateandreportthetotalnumberofmissingvaluesinthedataset}
 numr <- summarise(activity, countNA = sum(is.na(steps)))
 print(numr)
 ```
@@ -120,20 +120,20 @@ print(numr)
 
 * Merge activity data with mean interval data
 
-```{r Merge activity data with mean interval data}
+```{r Mergeactivitydatawithmeanintervaldata}
 byDay2 <- merge(activity, meanInterval, by = "interval")
 ```
 
 * Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
-```{r Create a new dataset that is equal to the original dataset but with the missing data filled in.}
+```{r Createanewdatasetthatisequaltotheoriginaldatasetbutwiththemissingdatafilledin}
 byDay3 <- select(byDay2, interval, steps, date, meanInterval)
 byDay3$steps[is.na(byDay3$steps)] <- byDay3$meanInterval[is.na(byDay3$steps)]
 ```
 
 * Check that only the NA values have been replaced
 
-```{r Check that only the NA values have been replaced}
+```{r CheckthatonlytheNAvalueshavebeenreplaced}
 
 # Compare steps variable from original dataset versus imputted dataset
 byDay4 <- byDay2$steps == byDay3$steps
@@ -170,33 +170,33 @@ equalSteps + byDay2NA == byDay2Nrows
 
 * Create groups to calculate statistics.  The statistics will be grouped by date
 
-```{r Create groups by date}
+```{r Creategroupsbydate}
 byDayGroup <- group_by(byDay3, date)
 ```
 
 * Calculate total number of steps per day with imputation
 
-```{r Calculate total number of steps per day with imputation}
+```{r Calculatetotalnumberofstepsperdaywithimputation}
 sumDay3 <- byDayGroup %>%
         summarise(sumDay = sum(steps, na.rm = TRUE))
 ```
 
 * Make a histogram of the total number of steps taken each day
 
-```{r Plot histogram of total number of steps per day with imputation}
+```{r Plothistogramoftotalnumberofstepsperdaywithimputation}
 qplot(sumDay3$sumDay, geom = "histogram", xlab = "Mean total number of steps taken per day", ylab = "Count", binwidth = 1000, main = c("Histogram of total number of steps per day (Imputted)"))
 ```
 
 * Calculate and report the mean number of steps per day with imputation
 
-```{r Calculate mean number of steps per day with imputation}
+```{r Calculatemeannumberofstepsperdaywithimputation}
 meanDayTotalSumImpute <- mean(sumDay3$sumDay, na.rm = TRUE)
 print(meanDayTotalSumImpute)
 ```
 
 * Calculate and report the median number of steps per day with imputation
 
-```{r Calculate median number of steps per day with imputation}
+```{r Calculatemediannumberofstepsperdaywithimputation}
 medianDayTotalSumImpute <- median(sumDay3$sumDay, na.rm = TRUE)
 print(medianDayTotalSumImpute)
 ```
@@ -207,19 +207,19 @@ print(medianDayTotalSumImpute)
 
 * Convert date variable to date type
 
-```{r Convert date variable to date type}
+```{r Convertdatevariabletodatetype}
 weekdayData <- mutate(byDay2, asDate = as.POSIXct(date))
 ```
 
 * Determine day of week each date occurred
 
-```{r Determine day of week each date occurred}
+```{r Determinedayofweekeachdateoccurred}
 weekdayData <- mutate(weekdayData, weekday = weekdays(asDate))
 ```
 
 * Create weekend variable 
 
-```{r Create weekend variable}
+```{r Createweekendvariable}
 weekdayData <- mutate(weekdayData, weekend = ifelse(weekday %in% c("Saturday", "Sunday"), "weekend", "weekday"))
 ```
 
@@ -227,24 +227,24 @@ weekdayData <- mutate(weekdayData, weekend = ifelse(weekday %in% c("Saturday", "
 
 * Create groups to calculate statistics.  The statistics will be grouped by interval and weekend
 
-```{r Create groups by interval and weekend}
+```{r Creategroupsbyintervalandweekend}
 byIntervalGroup <- group_by(weekdayData, interval, weekend)
 ```
 
 * Calculate mean number of steps per day
 
-```{r Calculate mean number of steps per day}
+```{r Calculatemeannumberofstepsperday}
 meanIntervalImpute <- summarise(byIntervalGroup, meanDay = mean(steps, na.rm = TRUE))
 ```
 
 * Calculate median number of steps per day
 
-```{r Calculate median number of steps per day}
+```{r Calculatemediannumberofstepsperday}
 medianIntervalImpute <- summarise(byIntervalGroup, medianDay = median(steps, na.rm = TRUE))
 ```
 
 * Create panel plot of the mean number of steps per day by interval split by weekend and weekday
 
-```{r Create panel plot of the mean number of steps per day by interval split by weekend and weekday}
+```{r Createpanelplotofthemeannumberofstepsperdaybyintervalsplitbyweekendandweekday}
 xyplot(meanDay ~ interval | weekend, data = meanIntervalImpute, layout = c(1, 2), xlab = "Interval", ylab = "Number of Steps", main = "Mean number of steps per day by interval split by weekend and weekday")
 ```
