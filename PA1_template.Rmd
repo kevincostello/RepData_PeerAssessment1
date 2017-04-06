@@ -7,8 +7,8 @@ output:
     keep_md: yes
 ---
 
-```{r setup, include=TRUE, cache=FALSE}
-knitr::opts_chunk$set(message = FALSE, echo = TRUE, results = "asis", fig.show = "asis", include = TRUE)
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(message = FALSE, echo = TRUE)
 ```
 
 # Loading and preprocessing the data
@@ -93,7 +93,7 @@ meanInterval <- summarise(byInterval, meanInterval = mean(steps, na.rm = TRUE))
 * Make the time series plot
 
 ```{r PlottimeseriesofMeannumberofstepsperintervalversusinterval, fig.width = 10, fig.height = 6}
-plot(meanInterval$interval, meanInterval$meanInterval, type = "l", xlab = "Interval", ylab = "Mean number of steps per interval", main = "Time series plot of the Mean number of steps per interval versus interval (without imputation)")
+plot(meanInterval$interval, meanInterval$meanInterval, type = "l", xlab = "Interval", ylab = "Mean number of steps per interval", main = "Time series plot of the Mean number of steps per interval (without imputation)")
 ```
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?

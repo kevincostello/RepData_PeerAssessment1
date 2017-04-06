@@ -4,7 +4,7 @@ Kevin Costello
 
 
 ```r
-knitr::opts_chunk$set(message = FALSE, echo = TRUE, results = "asis", fig.show = "asis", include = TRUE)
+knitr::opts_chunk$set(message = FALSE, echo = TRUE)
 ```
 
 # Loading and preprocessing the data
@@ -71,7 +71,9 @@ meanDayTotalAllDays <- mean(sumDay$sumDay, na.rm = TRUE)
 print(meanDayTotalAllDays)
 ```
 
-[1] 9354.23
+```
+## [1] 9354.23
+```
 
 * Calculate report the median number of steps per day without imputation
 
@@ -81,7 +83,9 @@ medianDayTotalAllDays <- median(sumDay$sumDay, na.rm = TRUE)
 print(medianDayTotalAllDays)
 ```
 
-[1] 10395
+```
+## [1] 10395
+```
 
 # What is the average daily activity pattern?
 
@@ -105,7 +109,7 @@ meanInterval <- summarise(byInterval, meanInterval = mean(steps, na.rm = TRUE))
 
 
 ```r
-plot(meanInterval$interval, meanInterval$meanInterval, type = "l", xlab = "Interval", ylab = "Mean number of steps per interval", main = "Time series plot of the Mean number of steps per interval versus interval (without imputation)")
+plot(meanInterval$interval, meanInterval$meanInterval, type = "l", xlab = "Interval", ylab = "Mean number of steps per interval", main = "Time series plot of the Mean number of steps per interval (without imputation)")
 ```
 
 ![](PA1_template_files/figure-html/PlottimeseriesofMeannumberofstepsperintervalversusinterval-1.png)<!-- -->
@@ -118,10 +122,12 @@ interval <- subset(meanInterval, meanInterval == max(meanInterval))
 print(interval)
 ```
 
-# A tibble: 1 × 2
-  interval meanInterval
-     <int>        <dbl>
-1      835     206.1698
+```
+## # A tibble: 1 × 2
+##   interval meanInterval
+##      <int>        <dbl>
+## 1      835     206.1698
+```
 
 # Imputing missing values
 
@@ -133,8 +139,10 @@ numr <- summarise(activity, countNA = sum(is.na(steps)))
 print(numr)
 ```
 
-  countNA
-1    2304
+```
+##   countNA
+## 1    2304
+```
 
 2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
 
@@ -169,7 +177,9 @@ byDay2Nrows <- nrow(byDay2)
 print(byDay2Nrows)
 ```
 
-[1] 17568
+```
+## [1] 17568
+```
 
 ```r
 # Count number of rows in imputted dataset
@@ -177,14 +187,18 @@ byDay3Nrows <- nrow(byDay3)
 print(byDay3Nrows)
 ```
 
-[1] 17568
+```
+## [1] 17568
+```
 
 ```r
 # Check the number of rows in the original and imputted datasets are the same
 byDay2Nrows == byDay3Nrows
 ```
 
-[1] TRUE
+```
+## [1] TRUE
+```
 
 ```r
 # Count number of times the values from the original and imputted datasets are equal
@@ -192,7 +206,9 @@ equalSteps <- sum(byDay4, na.rm = TRUE)
 print(equalSteps)
 ```
 
-[1] 15264
+```
+## [1] 15264
+```
 
 ```r
 # Count number of NA values for steps in original dataset
@@ -200,7 +216,9 @@ byDay2NA <- sum(is.na(byDay2$steps))
 print(byDay2NA)
 ```
 
-[1] 2304
+```
+## [1] 2304
+```
 
 ```r
 # Count number of NA values for steps in imputted dataset
@@ -208,14 +226,18 @@ byDay3NA <- sum(is.na(byDay3$steps))
 print(byDay3NA)
 ```
 
-[1] 0
+```
+## [1] 0
+```
 
 ```r
 # Sum of the equal values in the original and imputted datasets and the NA values in original dataset should equal the total number of rows in the original dataset
 equalSteps + byDay2NA == byDay2Nrows
 ```
 
-[1] TRUE
+```
+## [1] TRUE
+```
 
 
 4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
@@ -252,7 +274,9 @@ meanDayTotalSumImpute <- mean(sumDay3$sumDay, na.rm = TRUE)
 print(meanDayTotalSumImpute)
 ```
 
-[1] 10766.19
+```
+## [1] 10766.19
+```
 
 * Calculate and report the median number of steps per day with imputation
 
@@ -262,7 +286,9 @@ medianDayTotalSumImpute <- median(sumDay3$sumDay, na.rm = TRUE)
 print(medianDayTotalSumImpute)
 ```
 
-[1] 10766.19
+```
+## [1] 10766.19
+```
 
 # Are there differences in activity patterns between weekdays and weekends?
 
