@@ -290,7 +290,9 @@ print(medianDayTotalSumImpute)
 ## [1] 10766.19
 ```
 
-# Are there differences in activity patterns between weekdays and weekends?
+* What is the impact of imputing missing data on the estimates of the total daily number of steps?
+
+<span style="font-family:Futura;">The total number of steps per day has increased, as can be seen in the histogram with imputation.  In particular the number of days with a value of 0 has dropped significantly from 10 in the histogram without imputaion to only 2 in the histogram with imputation.</span>
 
 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
