@@ -4,7 +4,7 @@ Kevin Costello
 
 
 ```r
-knitr::opts_chunk$set(message = FALSE, echo = TRUE, results = "markup", fig.show = "asis")
+knitr::opts_chunk$set(message = FALSE, echo = TRUE, results = "markup", fig.show = "asis", include = TRUE)
 ```
 
 # Loading and preprocessing the data
