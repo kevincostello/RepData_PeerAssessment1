@@ -3,6 +3,7 @@ Kevin Costello
 `r format(Sys.Date(), '%d/%m/%y')`  
 
 
+
 # Loading and preprocessing the data
 
 * Load libraries required for the assignment
@@ -10,49 +11,10 @@ Kevin Costello
 
 ```r
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 library(reshape2)
 library(ggplot2)
 library(lattice)
 library(tidyverse)
-```
-
-```
-## Loading tidyverse: tibble
-## Loading tidyverse: tidyr
-## Loading tidyverse: readr
-## Loading tidyverse: purrr
-```
-
-```
-## Conflicts with tidy packages ----------------------------------------------
-```
-
-```
-## filter(): dplyr, stats
-## lag():    dplyr, stats
-```
-
-```r
 library(tidyr)
 ```
 
