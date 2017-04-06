@@ -3,6 +3,9 @@ Kevin Costello
 `r format(Sys.Date(), '%d/%m/%y')`  
 
 
+```r
+knitr::opts_chunk$set(message = FALSE, echo = TRUE, results = "markup", fig.show = "asis")
+```
 
 # Loading and preprocessing the data
 
@@ -19,13 +22,6 @@ library(tidyr)
 ```
 
 1. Load the data (i.e. read.csv())
-
-* Set working directory
-
-
-```r
-setwd("~/coursera/Reproducible Research/Course Project 1/RepData_PeerAssessment1")
-```
 
 * Load activity.csv
 

@@ -7,7 +7,7 @@ output:
     keep_md: yes
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
 knitr::opts_chunk$set(message = FALSE, echo = TRUE, results = "markup", fig.show = "asis")
 ```
 
@@ -25,12 +25,6 @@ library(tidyr)
 ```
 
 1. Load the data (i.e. read.csv())
-
-* Set working directory
-
-```{r Set working directory}
-setwd("~/coursera/Reproducible Research/Course Project 1/RepData_PeerAssessment1")
-```
 
 * Load activity.csv
 
